@@ -2,6 +2,7 @@
 /* global Cookies */
 
 import { serverurl } from '../config'
+import { signInWithEthereum } from './ethereum-auth'
 
 let checkAuth = false
 let profile = null
@@ -82,6 +83,13 @@ export function checkIfAuth (yesCallback, noCallback) {
     noCallback()
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ethereumSignInButton = document.getElementById('ethereumSignIn');
+    if (ethereumSignInButton) {
+        ethereumSignInButton.addEventListener('click', signInWithEthereum);
+    }
+});
 
 export default {
   checkAuth,
