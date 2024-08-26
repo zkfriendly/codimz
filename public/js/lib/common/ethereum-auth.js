@@ -24,19 +24,21 @@ export async function signInWithEthereum() {
         const response = await fetch(`${serverurl}/auth/ethereum`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                address,
-                signature,
-                message
-            })
+                address: address,
+                signature: signature,
+                message: message
+            }),
+            credentials: 'include'
         });
 
         if (response.ok) {
             window.location.reload();
         } else {
-            console.log("address", address)
+            console.log("response", response)
             alert('Authentication failed. Please try again.');
         }
     } catch (error) {
